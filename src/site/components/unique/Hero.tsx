@@ -78,6 +78,7 @@ const Hero = () => {
                src={hero.images.main.src} 
                alt={hero.images.main.alt} 
                className="w-full h-full object-cover"
+               decoding="async"
              />
              
              {/* Mobile Badge - Right Side */}
@@ -103,6 +104,7 @@ const Hero = () => {
                src={hero.images.main.src} 
                alt={hero.images.main.alt} 
                className="w-full h-full object-cover opacity-100"
+               decoding="async"
              />
              
              {/* Floating Badge - Right Side */}
@@ -124,6 +126,8 @@ const Hero = () => {
                src={hero.images.secondary.src} 
                alt={hero.images.secondary.alt} 
                className="w-full h-full object-cover"
+               loading="lazy"
+               decoding="async"
              />
           </motion.div>
         </motion.div>

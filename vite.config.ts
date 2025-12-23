@@ -10,4 +10,19 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    cssCodeSplit: true, // Split CSS to improve loading
+    minify: 'esbuild', // Fast minification (Vite default, faster than terser)
+    rollupOptions: {
+      output: {
+        // Optimize asset file names for better caching
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+      },
+    },
+  },
+  css: {
+    devSourcemap: true,
+  },
 })

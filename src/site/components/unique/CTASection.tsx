@@ -106,7 +106,13 @@ const CTASection = () => {
                   {/* Chat Header */}
                   <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-4">
                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                        <img src={cta.chat.avatar.src} alt={cta.chat.avatar.alt} className="rounded-full" />
+                        <img 
+                          src={cta.chat.avatar.src} 
+                          alt={cta.chat.avatar.alt} 
+                          className="rounded-full"
+                          loading="lazy"
+                          decoding="async"
+                        />
                      </div>
                      <div>
                         <p className="text-white font-bold text-sm">{cta.chat.name}</p>

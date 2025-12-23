@@ -57,7 +57,7 @@ const TrustSection = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               className="font-display text-4xl font-bold text-brand-dark mb-6"
             >
               {trust.headline.line1} <br />
@@ -68,7 +68,7 @@ const TrustSection = () => {
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 0.1 }}
                   className="text-brand-dark/70 text-lg mb-10 leading-relaxed"
                 >
@@ -80,7 +80,7 @@ const TrustSection = () => {
                   variants={fadeInLeft}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 0.2 }}
                   className="flex gap-4 items-start mb-12"
                 >
@@ -165,6 +165,7 @@ const TrustSection = () => {
                     className="w-full h-full object-cover opacity-90 mix-blend-multiply" 
                     alt={trust.images.main.alt}
                     loading="lazy"
+                    decoding="async"
                 />
                 <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-brand-dark/90 to-transparent p-8">
                     <p className="font-display text-white text-2xl font-bold">{trust.images.main.overlay.title}</p>
@@ -186,6 +187,7 @@ const TrustSection = () => {
                     className="w-full h-full object-cover" 
                     alt={trust.images.secondary.alt}
                     loading="lazy"
+                    decoding="async"
                 />
             </motion.div>
           </div>

@@ -49,8 +49,8 @@ const StatsSection = () => {
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.5, duration: 0.6 }}
                 className="text-center group"
               >
                 <div className="mb-6 inline-flex p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-brand-main group-hover:border-brand-main transition-colors duration-300 shadow-lg">
