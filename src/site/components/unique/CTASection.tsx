@@ -157,7 +157,7 @@ const CTASection = () => {
                     variants={scaleOnly}
                     initial="hidden"
                     whileInView="visible"
-                    transition={{ delay: 0.5, type: "spring" }}
+                    transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
                     className="absolute -top-4 -right-4 bg-white text-brand-dark px-3 py-1 rounded-lg font-bold shadow-xl text-xs rotate-12"
                   >
                     {cta.chat.badge.text}
