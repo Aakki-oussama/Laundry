@@ -51,7 +51,7 @@ export const trustConfig = {
   ],
   images: {
     main: {
-      src: '/images/trust/Avis1.webp',
+      src: '/images/Trust/Avis1.webp',
       alt: 'Service de repassage professionnel',
       overlay: {
         title: 'Hygiène Absolue',
@@ -59,7 +59,7 @@ export const trustConfig = {
       },
     },
     secondary: {
-      src: '/images/trust/Avis.webp',
+      src: '/images/Trust/Avis.webp',
       alt: 'Linge plié au carré',
     },
   },

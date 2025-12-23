@@ -83,7 +83,7 @@ export const SITE_CONFIG = {
           alt: 'Linge frais et repassé',
         },
         secondary: {
-          src: '/images/hero/EcoLaundry-second.webp',
+          src: '/images/hero/Ecolaundry-Second.webp',
           alt: 'lavage au kilo',
         },
       },
@@ -134,7 +134,7 @@ export const SITE_CONFIG = {
           subtitle: 'Le quotidien, simplifié.',
           description: 'Idéal pour votre linge de tous les jours (t-shirts, jeans, draps). Lavé, séché, plié au carré. Simple et économique.',
           icon: 'Weight',
-          src: '/images/service/Lavages-au-Kg.webp',
+          src: '/images/service/Lavages-au-kg.webp',
           alt: 'Lavage au Kilo',
           priceStart: 'Dès 15 DH/kg',
         },
@@ -278,7 +278,7 @@ export const SITE_CONFIG = {
       // Chat interface simulation (for visual side)
       chat: {
         avatar: {
-          src: '/images/logo/EcoLaundry-logo.webp',
+          src: '/images/logo/Ecolaundry-logo.webp',
           alt: 'EcoLaundry Meknès',
         },
         name: 'EcoLaundry Meknès',
