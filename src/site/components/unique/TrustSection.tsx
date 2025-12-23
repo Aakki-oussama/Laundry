@@ -1,23 +1,34 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SITE_CONFIG } from '@/site/config/site-config';
 import { iconMap } from '@/site/utils/icon-map';
 import { fadeInUp, fadeInLeft, scaleIn } from '@/site/utils/motion-variants';
 
+// Detect if device is mobile/iOS for performance optimization
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+};
+
 const TrustSection = () => {
   const { trust } = SITE_CONFIG;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+  const isMobile = isMobileDevice();
 
-  // Auto-rotate every 6 seconds
+  // Auto-rotate every 6 seconds (disable on mobile for better performance)
   useEffect(() => {
+    if (prefersReducedMotion) return;
+    
+    const interval = isMobile ? 8000 : 6000; // Longer interval on mobile
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % trust.testimonials.length);
-    }, 6000);
+    }, interval);
     return () => clearInterval(timer);
-  }, [trust.testimonials.length]);
+  }, [trust.testimonials.length, isMobile, prefersReducedMotion]);
 
   const nextTestimonial = () => {
     setDirection(1);
@@ -29,9 +40,10 @@ const TrustSection = () => {
     setCurrentIndex((prev) => (prev - 1 + trust.testimonials.length) % trust.testimonials.length);
   };
 
+  // Simplified variants for mobile/iOS performance
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 20 : -20,
+      x: prefersReducedMotion ? 0 : (direction > 0 ? (isMobile ? 10 : 20) : (isMobile ? -10 : -20)),
       opacity: 0
     }),
     center: {
@@ -41,9 +53,21 @@ const TrustSection = () => {
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 20 : -20,
+      x: prefersReducedMotion ? 0 : (direction < 0 ? (isMobile ? 10 : 20) : (isMobile ? -10 : -20)),
       opacity: 0
     })
+  };
+
+  // Optimized transition for mobile
+  const getTransition = () => {
+    if (prefersReducedMotion) {
+      return { opacity: { duration: 0.2 } };
+    }
+    if (isMobile) {
+      // Simpler animation on mobile - no spring physics
+      return { opacity: { duration: 0.25 }, x: { duration: 0.25, ease: "easeOut" } };
+    }
+    return { opacity: { duration: 0.3 }, x: { type: "spring", stiffness: 300, damping: 30 } };
   };
 
   return (
@@ -57,8 +81,10 @@ const TrustSection = () => {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: isMobile ? "-100px" : "-50px" }}
+              transition={{ duration: isMobile ? 0.4 : 0.6 }}
               className="font-display text-4xl font-bold text-brand-dark mb-6"
+              style={{ willChange: 'transform, opacity' }}
             >
               {trust.headline.line1} <br />
               <span className="text-brand-main">{trust.headline.highlight}</span>
@@ -68,9 +94,10 @@ const TrustSection = () => {
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 0.1 }}
+                  viewport={{ once: true, margin: isMobile ? "-100px" : "-50px" }}
+                  transition={{ delay: prefersReducedMotion ? 0 : 0.1, duration: isMobile ? 0.4 : 0.6 }}
                   className="text-brand-dark/70 text-lg mb-10 leading-relaxed"
+                  style={{ willChange: 'transform, opacity' }}
                 >
               {trust.description}
             </motion.p>
@@ -80,9 +107,10 @@ const TrustSection = () => {
                   variants={fadeInLeft}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 0.2 }}
+                  viewport={{ once: true, margin: isMobile ? "-100px" : "-50px" }}
+                  transition={{ delay: prefersReducedMotion ? 0 : 0.2, duration: isMobile ? 0.4 : 0.6 }}
                   className="flex gap-4 items-start mb-12"
+                  style={{ willChange: 'transform, opacity' }}
                 >
               <div className="bg-brand-soft p-3 rounded-full shrink-0">
                 {(() => {
@@ -112,8 +140,9 @@ const TrustSection = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ opacity: { duration: 0.3 }, x: { type: "spring", stiffness: 300, damping: 30 } }}
+                    transition={getTransition()}
                     className="w-full"
+                    style={{ willChange: 'transform, opacity' }}
                   >
                     <p className="text-base md:text-xl italic text-brand-dark/80 font-display leading-relaxed">
                       "{trust.testimonials[currentIndex].text}"
@@ -157,8 +186,9 @@ const TrustSection = () => {
                initial="hidden"
                whileInView="visible"
                viewport={{ once: true }}
-               transition={{ duration: 0.8 }}
+               transition={{ duration: isMobile ? 0.5 : 0.8 }}
                className="absolute top-0 right-0 w-4/5 h-4/5 bg-brand-main rounded-[3rem] overflow-hidden shadow-2xl rotate-3"
+               style={{ willChange: 'transform, opacity' }}
             >
                 <img 
                     src={trust.images.main.src} 
@@ -179,8 +209,9 @@ const TrustSection = () => {
                initial="hidden"
                whileInView="visible"
                viewport={{ once: true }}
-               transition={{ delay: 0.3, duration: 0.8 }}
+               transition={{ delay: prefersReducedMotion ? 0 : (isMobile ? 0.15 : 0.3), duration: isMobile ? 0.5 : 0.8 }}
                className="absolute bottom-12 left-0 w-3/5 h-3/5 bg-white border-8 border-white rounded-[2rem] shadow-xl overflow-hidden -rotate-2"
+               style={{ willChange: 'transform, opacity' }}
             >
                 <img 
                     src={trust.images.secondary.src} 

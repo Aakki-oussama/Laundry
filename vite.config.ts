@@ -12,7 +12,6 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true, // Split CSS to improve loading
-    minify: 'esbuild', // Fast minification (Vite default, faster than terser)
     rollupOptions: {
       output: {
         // Optimize asset file names for better caching
