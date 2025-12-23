@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans: 'Inter', system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+    
+    --font-display: 'Inter', system-ui, sans-serif;
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    --color-brand-main: var(--brand-main);
+    --color-brand-dark: var(--brand-dark);
+    --color-brand-cream: var(--brand-cream);
+    --color-brand-soft: var(--brand-soft);
+    --color-brand-light: var(--brand-light);
+}
+
+:root {
+    --background: oklch(1 0 0);                         /* Pure white */
+    --foreground: oklch(0.3954 0.1011 253.98);         /* Deep blue text (#19477b) */
+    --card: oklch(1 0 0);                               /* White cards */
+    --card-foreground: oklch(0.3954 0.1011 253.98);    /* Deep blue text on cards */
+    --popover: oklch(1 0 0);                            /* White popover */
+    --popover-foreground: oklch(0.3954 0.1011 253.98); /* Deep blue popover text */
+
+    /* === Colors from V4.css === */
+    --primary: oklch(0.3954 0.1011 253.98);            /* #19477b - Deep blue */
+    --primary-foreground: oklch(0.985 0 0);           /* White text on primary */
+
+    --secondary: oklch(0.96 0.005 240);                /* #ebeced - Very light grey-blue */
+    --secondary-foreground: oklch(0.3954 0.1011 253.98); /* Deep blue text on secondary */
+
+    --brand-main: oklch(0.685 0.1279 230.96);           /* Sky blue (#28a7da) */
+    --brand-dark: oklch(0.3954 0.1011 253.98);          /* Deep blue (#19477b) */
+    --brand-cream: oklch(0.98 0.01 80);                  /* Light cream */
+    --brand-soft: oklch(0.95 0.02 240);                  /* Very soft light blue */
+    --brand-light: oklch(0.85 0.03 240);                 /* Light blue-grey */
+
+    --extra: oklch(0.685 0.1279 230.96);               /* #28a7da - Sky blue */
+    --extra-foreground: oklch(0.985 0 0);             /* White text on extra */
+    /* =========================== */
+
+    --muted: oklch(0.96 0.01 240);                     /* Very light blue-grey */
+    --muted-foreground: oklch(0.55 0.02 245);          /* Medium blue-grey */
+    --accent: oklch(0.92 0.05 230);                    /* Very light sky blue */
+    --accent-foreground: oklch(0.3954 0.1011 253.98);  /* Deep blue text */
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0 0);
+    --border: oklch(0.92 0.01 245);                    /* Light blue-grey borders */
+    --input: oklch(0.92 0.01 245);                     /* Light blue-grey input borders */
+    --ring: oklch(0.685 0.1279 230.96);                /* Sky blue focus ring (#28a7da) */
+
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+
+    --radius: 0.75rem;                                 /* 12px rounded corners */
+
+    --sidebar: oklch(0.985 0 0);                       /* White sidebar */
+    --sidebar-foreground: oklch(0.3954 0.1011 253.98); /* Deep blue text */
+    --sidebar-primary: oklch(0.3954 0.1011 253.98);    /* Deep blue (#19477b) */
+    --sidebar-primary-foreground: oklch(0.985 0 0);    /* White text */
+    --sidebar-accent: oklch(0.685 0.1279 230.96);      /* Sky blue (#28a7da) */
+    --sidebar-accent-foreground: oklch(0.3954 0.1011 253.98); /* Deep blue text */
+    --sidebar-border: oklch(0.92 0.01 245);            /* Light blue-grey border */
+    --sidebar-ring: oklch(0.685 0.1279 230.96);        /* Sky blue ring */
+}
+
+.dark {
+    /* Dark mode with your colors */
+    --background: oklch(0.22 0.04 254);                /* Dark blue background */
+    --foreground: oklch(0.985 0 0);                    /* White text */
+    --card: oklch(0.25 0.04 254);                      /* Dark blue cards */
+    --card-foreground: oklch(0.985 0 0);               /* White text on cards */
+    --popover: oklch(0.25 0.04 254);                   /* Dark blue popover */
+    --popover-foreground: oklch(0.985 0 0);            /* White popover text */
+
+    /* Primary becomes brighter in dark mode */
+    --primary: oklch(0.685 0.1279 230.96);             /* Bright sky blue (#28a7da) */
+    --primary-foreground: oklch(0.985 0 0);            /* White text on primary */
+
+    --brand-main: oklch(0.685 0.1279 230.96);           /* Bright sky blue */
+    --brand-dark: oklch(0.985 0 0);                      /* White for dark mode */
+    --brand-cream: oklch(0.25 0.02 80);                  /* Darker cream */
+    --brand-soft: oklch(0.30 0.03 254);                  /* Dark soft blue */
+    --brand-light: oklch(0.70 0.05 230);                 /* Light blue-grey */
+
+    /* Secondary becomes darker in dark mode */
+    --secondary: oklch(0.35 0.04 254);                 /* Medium dark blue */
+    --secondary-foreground: oklch(0.985 0 0);          /* White text on secondary */
+
+    /* Extra color in dark mode */
+    --extra: oklch(0.55 0.08 230);                    /* Medium sky blue */
+    --extra-foreground: oklch(0.985 0 0);             /* White text on extra */
+
+    /* Muted elements */
+    --muted: oklch(0.35 0.04 254);                     /* Medium dark blue */
+    --muted-foreground: oklch(0.75 0.05 230);          /* Light blue-grey */
+    --accent: oklch(0.55 0.08 230);                    /* Medium sky blue */
+    --accent-foreground: oklch(0.985 0 0);             /* White text on accent */
+
+    /* Destructive/error states */
+    --destructive: oklch(0.55 0.15 27);                /* Red for dark mode */
+    --destructive-foreground: oklch(0.985 0 0);        /* White text on red */
+
+    /* Form elements */
+    --border: oklch(0.35 0.04 254);                    /* Dark blue borders */
+    --input: oklch(0.35 0.04 254);                     /* Dark blue inputs */
+    --ring: oklch(0.685 0.1279 230.96);                /* Bright sky blue ring */
+
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+
+    /* Sidebar in dark mode */
+    --sidebar: oklch(0.25 0.04 254);                   /* Dark blue sidebar */
+    --sidebar-foreground: oklch(0.985 0 0);           /* White text */
+    --sidebar-primary: oklch(0.685 0.1279 230.96);     /* Bright sky blue */
+    --sidebar-primary-foreground: oklch(0.10 0 0);     /* Dark text */
+    --sidebar-accent: oklch(0.55 0.08 230);            /* Medium sky blue */
+    --sidebar-accent-foreground: oklch(0.985 0 0);      /* White text */
+    --sidebar-border: oklch(0.35 0.04 254);            /* Dark blue border */
+    --sidebar-ring: oklch(0.685 0.1279 230.96);        /* Bright sky blue ring */
+}
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+@layer utilities {
+    /* Transition class for elements that use Framer Motion animations
+       Only transitions properties that Framer Motion doesn't animate (opacity, transform)
+       This prevents conflicts between CSS transitions and Framer Motion */
+    .transition-safe {
+        transition-property: background-color, border-color, box-shadow, color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    
+    /* For transform-only transitions (like hover scale effects) */
+    .transition-transform-safe {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+}
